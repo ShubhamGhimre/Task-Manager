@@ -1,41 +1,65 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import TaskList from "@/components/TaskList";
-import React, { useState } from "react";
+import TaskForm from "@/components/TaskForm";
+import React, { useEffect, useState } from "react";
 import { Task } from "../types";
 
-const page = () => {
+const Page = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: 1, title: "Task 1", description: "Description for Task 1",
-      assignedTo: "shuv"
-    },
-    {
-      id: 2, title: "Task 2", description: "Description for Task 2",
-      assignedTo: "shuv"
-    },
-    {
-      id: 3, title: "Task 3", description: "Description for Task 3",
-      assignedTo: "shuv"
-    },
-  ]);
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  const saveTasksToLocalStorage = (tasks: Task[]) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
 
   const onEdit = (task: Task) => {
-    console.log("Edit task:", task);
-    // Add edit functionality here (e.g., navigate to a form or open a modal)
+    setEditingTask(task); 
   };
 
   const onDelete = (taskId: number) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
   };
 
- 
+  const onAddTask = (task: Task) => {
+    const updatedTasks = [...tasks, { ...task, id: Date.now() }];
+    setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
+  };
+
+  const onUpdateTask = (updatedTask: Task) => {
+    const updatedTasks = tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task));
+    setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
+    setEditingTask(null);
+  };
+
+  const cancelEdit = () => {
+    setEditingTask(null);
+  };
+
   return (
     <div>
-      <TaskList tasks={tasks} onEdit={onEdit} onDelete={onDelete} />
+      {editingTask ? (
+        <TaskForm
+          onAddTask={onAddTask}
+          onUpdateTask={onUpdateTask}
+          editingTask={editingTask}
+          cancelEdit={cancelEdit}
+        />
+      ) : (
+        <TaskList tasks={tasks} onEdit={onEdit} onDelete={onDelete} />
+      )}
     </div>
   );
 };
 
-export default page;
+export default Page;

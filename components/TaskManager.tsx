@@ -34,7 +34,7 @@ const TaskManager: React.FC = () => {
         editingTask={editingTask}
         cancelEdit={() => setEditingTask(null)}
       />
-      <TaskList tasks={tasks} onEdit={setEditingTask} onDelete={deleteTask} />
+      {/* <TaskList tasks={tasks} onEdit={setEditingTask} onDelete={deleteTask} /> */}
     </div>
   );
 };

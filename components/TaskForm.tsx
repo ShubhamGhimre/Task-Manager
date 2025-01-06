@@ -26,13 +26,35 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onUpdateTask, editingTas
     setTask({ ...task, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = () => {
+  //   if (task.title && task.description && task.assignedTo) {
+  //     if (editingTask) {
+  //       onUpdateTask(task);
+  //     } else {
+  //       onAddTask(task);
+  //     }
+  //     setTask({ id: 0, title: "", description: "", assignedTo: "" });
+  //   }
+  // };
+  const saveToLocalStorage = (tasks: Task[]) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+  
   const handleSubmit = () => {
     if (task.title && task.description && task.assignedTo) {
+      let tasks: Task[] = JSON.parse(localStorage.getItem("tasks") || "[]");
+
       if (editingTask) {
+        const updatedTasks = tasks.map((t) => (t.id === task.id ? task : t));
+        saveToLocalStorage(updatedTasks);
         onUpdateTask(task);
       } else {
-        onAddTask(task);
+        const newTask = { ...task, id: Date.now() };
+        tasks = [...tasks, newTask];
+        saveToLocalStorage(tasks);
+        onAddTask(newTask);
       }
+
       setTask({ id: 0, title: "", description: "", assignedTo: "" });
     }
   };
