@@ -68,7 +68,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onUpdateTask, editingTas
         </Button>
         {editingTask && (
           <Button variant="cancel_button" onClick={cancelEdit} >
-            cancel
+            Cancel
           </Button>
         )}
       </div>
