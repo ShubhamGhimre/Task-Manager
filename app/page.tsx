@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
+import TaskManager from "@/components/TaskManager";
 
 export default function Home() {
-  return <div className="">
-    Collaborative Team Task Manager
-    <Button >Click me</Button>
-  </div>;
+  return (
+    <div className="main">
+      <TaskManager />
+    </div>
+  );
 }
