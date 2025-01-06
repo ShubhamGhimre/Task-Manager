@@ -1,7 +1,7 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-
+// navbar
 const Navbar = () => {
   return (
     <div className="flex items-center justify-between h-16 px-20 bg-slate-400 w-screen">
