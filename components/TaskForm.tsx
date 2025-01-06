@@ -47,90 +47,57 @@ const TaskForm: React.FC<TaskFormProps> = ({
   };
 
   return (
-    // <Card className="w-[500px]">
-    //   <CardHeader>
-    //     <CardTitle>Create A Task</CardTitle>
-    //   </CardHeader>
-    //   <CardContent>
-    //       <div className="grid w-full items-center gap-4">
-    //         <div className="flex flex-col space-y-1.5">
-    //           <Label htmlFor="Title">Title</Label>
-    //           <Input
-    //             type="text"
-    //             id="name"
-    //             placeholder="Title of your task"
-    //             value={task.title}
-    //             onChange={handleInputChange}
-    //           />
-    //         </div>
-    //         <div className="flex flex-col space-y-1.5">
-    //           <Label htmlFor="description">Description</Label>
-    //           <Input
-    //             type="text"
-    //             id="description"
-    //             placeholder="Description of your task"
-    //             value={task.description}
-    //             onChange={handleInputChange}
-    //           />
-    //         </div>
-    //         <div>
-    //           <Label htmlFor="assignedTo">Assigned To</Label>
-    //           <Input
-    //             id="assignedTo"
-    //             name="assignedTo"
-    //             value={task.assignedTo}
-    //             onChange={handleInputChange}
-    //             type="text"
-    //             placeholder="assigned to"
-    //           />
-    //         </div>
-    //       </div>
-    //   </CardContent>
-    //   <CardFooter className="flex justify-between">
-    //     <Button variant="add_button" onClick={handleSubmit}>
-    //       {editingTask ? "Update Task" : "Add Task"}
-    //     </Button>
-    //     {editingTask && (
-    //       <Button variant="cancel_button" onClick={cancelEdit}>
-    //         Cancel
-    //       </Button>
-    //     )}
-    //   </CardFooter>
-    // </Card>
-
-    
-    <div className="mb-6">
-      <Label htmlFor="title">Title</Label>
-      <Input id="title" name="title" value={task.title} onChange={handleInputChange} type="text" />
-      {/* <input
-        type="text"
-        name="title"
-        placeholder="Task Title"
-        value={task.title}
-        onChange={handleInputChange}
-        className="block w-full mb-2 p-2 border rounded"
-      /> */}
-      <Label htmlFor="description">Description</Label>
-      <textarea
-        name="description"
-        placeholder="Task Description"
-        value={task.description}
-        onChange={handleInputChange}
-        className="block w-full mb-2 p-2 border rounded"
-      />
-      <Label htmlFor="assignedTo">Assigned To</Label>
-      <Input id="assignedTo" name="assignedTo" value={task.assignedTo} onChange={handleInputChange} type="text" />
-      <div className="flex gap-2">
-        <Button variant="add_button" onClick={handleSubmit} >
+    <Card className="w-[500px]">
+      <CardHeader>
+        <CardTitle>Create A Task</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid w-full items-center gap-4">
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              name="title"
+              value={task.title}
+              onChange={handleInputChange}
+              type="text"
+              placeholder="Task Title"
+            />
+          </div>
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="description">Description</Label>
+            <textarea
+              name="description"
+              placeholder="Task Description"
+              value={task.description}
+              onChange={handleInputChange}
+              className="block w-full mb-2 p-2 border rounded"
+            />
+          </div>
+          <div>
+            <Label htmlFor="assignedTo">Assigned To</Label>
+            <Input
+              id="assignedTo"
+              name="assignedTo"
+              value={task.assignedTo}
+              onChange={handleInputChange}
+              placeholder="Assign To"
+              type="text"
+            />
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="add_button" onClick={handleSubmit}>
           {editingTask ? "Update Task" : "Add Task"}
         </Button>
         {editingTask && (
-          <Button variant="cancel_button" onClick={cancelEdit} >
+          <Button variant="cancel_button" onClick={cancelEdit}>
             Cancel
           </Button>
         )}
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 

@@ -16,14 +16,16 @@ const TasksPage: React.FC = () => {
 
   return (
     <div className="">
-      {editingTask && (
-        <TaskForm
-          onAddTask={() => {}}
-          onUpdateTask={updateTask}
-          editingTask={editingTask}
-          cancelEdit={() => setEditingTask(null)}
-        />
-      )}
+      <div className="flex justify-center items-center p-10">
+        {editingTask && (
+          <TaskForm
+            onAddTask={() => {}}
+            onUpdateTask={updateTask}
+            editingTask={editingTask}
+            cancelEdit={() => setEditingTask(null)}
+          />
+        )}
+      </div>
 
       {/* <ul className="list-disc pl-6 mt-4">
         {tasks.map((task) => (
@@ -52,7 +54,9 @@ const TasksPage: React.FC = () => {
         ))}
       </ul> */}
 
-      {deleteTask && <TaskList tasks={tasks} onEdit={handleEdit} onDelete={deleteTask} />}
+      {deleteTask && (
+        <TaskList tasks={tasks} onEdit={handleEdit} onDelete={deleteTask} />
+      )}
     </div>
   );
 };
