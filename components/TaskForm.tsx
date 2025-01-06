@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from "react";
 import { Task } from "@/app/types";
+import { Button } from "./ui/button";
 
 interface TaskFormProps {
   onAddTask: (task: Task) => void;
@@ -61,20 +62,14 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onUpdateTask, editingTas
         onChange={handleInputChange}
         className="block w-full mb-2 p-2 border rounded"
       />
-      <div className="flex gap-2">
-        <button
-          onClick={handleSubmit}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
+      <div className="flex gap-2">  
+        <Button variant="add_button" onClick={handleSubmit} >
           {editingTask ? "Update Task" : "Add Task"}
-        </button>
+        </Button>
         {editingTask && (
-          <button
-            onClick={cancelEdit}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-          >
+          <Button variant="cancel_button" onClick={cancelEdit} >
             Cancel
-          </button>
+          </Button>
         )}
       </div>
     </div>
