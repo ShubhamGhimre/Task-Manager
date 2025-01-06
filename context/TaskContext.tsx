@@ -15,18 +15,18 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const updateTask = (updatedTask: Task) => {
-    setTasks(
-      tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    setTasks((prev) =>
+      prev.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
-  }
+  };
 
   const deleteTask = (taskId: number) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
-  }
+    setTasks((prev) => prev.filter((task) => task.id !== taskId));
+  };
 
   console.log(tasks);
   return (
-    <TaskContext.Provider value={{ tasks, addTask , updateTask, deleteTask }}>
+    <TaskContext.Provider value={{ tasks, addTask, updateTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );
