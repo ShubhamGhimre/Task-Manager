@@ -15,7 +15,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onEdit, onDelete }) => {
       {tasks.length === 0 ? (
         <p>No tasks available. Start adding tasks!</p>
       ) : (
-        <ul className="grid px-10 py-5 gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <ul className="grid px-10 py-5 gap-10 grid-cols-1  md:grid-cols-2 lg:grid-cols-4">
           {tasks.map((task) => (
             <TaskItem key={task.id} task={task} onEdit={onEdit} onDelete={onDelete} />
           ))}

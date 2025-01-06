@@ -4,9 +4,9 @@ import { Task } from "@/app/types";
 
 interface TaskFormProps {
   onAddTask: (task: Task) => void;
-  onUpdateTask: (task: Task) => void;
-  editingTask: Task | null;
-  cancelEdit: () => void;
+  onUpdateTask?: (task: Task) => void;
+  editingTask?: Task | null;
+  cancelEdit?: () => void;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onUpdateTask, editingTask, cancelEdit }) => {
