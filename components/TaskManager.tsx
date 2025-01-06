@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import React, { useState } from "react";
 import TaskForm from "./TaskForm";
+// import TaskList from "./TaskList";
+import { Task } from "@/app/types";
 import TaskList from "./TaskList";
-import { Task } from "@/app/types"
 
 const TaskManager: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -13,7 +14,9 @@ const TaskManager: React.FC = () => {
   };
 
   const updateTask = (updatedTask: Task) => {
-    setTasks(tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
+    setTasks(
+      tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
     setEditingTask(null);
   };
 
