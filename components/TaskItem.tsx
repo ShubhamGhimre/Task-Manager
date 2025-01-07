@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Task } from "@/app/types";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Card,
   CardContent,
@@ -10,6 +16,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
+import TaskForm from "./TaskForm";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 interface TaskItemProps {
   task: Task;
@@ -18,6 +26,8 @@ interface TaskItemProps {
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
+
+  const [isDialogOpen, setDialogOpen] = useState(false);
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -28,9 +38,26 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
         <span>Assigned to: {task.assignedTo}</span>
       </CardContent>
       <CardFooter className="flex gap-2">
-        <Button onClick={() => onEdit(task)} className="bg-green-500 hover:bg-green-600">
-          Edit
-        </Button>
+      <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+          <DialogTrigger asChild>
+            <Button variant="outline">Edit</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Edit Task</DialogTitle>
+              <DialogDescription>You can Edit task from here </DialogDescription>
+            </DialogHeader>
+            <TaskForm
+              onAddTask={() => {}}
+              onUpdateTask={(updatedTask) => {
+                onEdit(updatedTask);
+                setDialogOpen(false); // Close dialog after update
+              }}
+              editingTask={task}
+              cancelEdit={() => setDialogOpen(false)} // Cancel edit closes dialog
+            />
+          </DialogContent>
+        </Dialog>
         <Button onClick={() => onDelete(task.id)} className="bg-red-500 hover:bg-red-600">
           Delete
         </Button>
