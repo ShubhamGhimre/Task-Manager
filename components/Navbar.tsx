@@ -29,7 +29,7 @@ const Navbar = () => {
         <Link href="/tasks" className="text-white hover:text-gray-200 font-semibold">
           View All Tasks
         </Link>
-        <Link href="/signin" className="text-white hover:text-gray-200 font-semibold">
+        <Link href="/login" className="text-white hover:text-gray-200 font-semibold">
           Sign In
         </Link>
         <Link href="/signup" className="text-white hover:text-gray-200 font-semibold">
