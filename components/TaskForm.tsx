@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Task, TaskFormProps } from "@/app/types";
+import { Task, TaskFormProps, TaskStatus } from "@/app/types";
 import { Button } from "./ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,7 +25,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     description: "",
     assignedTo: "",
     deadline: "",
-    status: "InProgress",
+    status: TaskStatus.InProgress,
     postedAt: date.toISOString(),
   });
 
@@ -52,7 +52,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         description: "",
         assignedTo: "",
         deadline: "",
-        status: "InProgress",
+        status: TaskStatus.InProgress,
         postedAt: new Date().toISOString(),
       });
     }
@@ -98,7 +98,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             <Label htmlFor="status">Status</Label>
             <Select
             value={task.status}
-            onValueChange={(value) => setTask({ ...task, status: value })}
+            onValueChange={(value: TaskStatus) => setTask({ ...task, status: value })}
             >
               <SelectTrigger className="w-[180px]" >
                 <SelectValue placeholder="Status"  />

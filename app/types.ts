@@ -3,12 +3,18 @@ export interface Task {
   title: string;
   description: string;
   assignedTo: string;
-  status?: string;
+  status?: TaskStatus;
   deadline?: string;
   postedAt?: string;
 }
 
-
+export enum TaskStatus {
+  InProgress = 'InProgress',
+  Completed = 'Completed',
+  InReview = 'InReview',
+  HighPriority = 'HighPriority',
+  LowPriority = 'LowPriority',
+}
 
 export interface TaskContextType {
   tasks: Task[];
