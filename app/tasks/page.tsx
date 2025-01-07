@@ -1,12 +1,17 @@
 // app/tasks/page.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useTaskContext } from "@/context/TaskContext";
 import TaskList from "@/components/TaskList";
 import { Search } from "lucide-react";
 
 const TasksPage: React.FC = () => {
   const { tasks, updateTask, deleteTask } = useTaskContext();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -24,6 +29,8 @@ const TasksPage: React.FC = () => {
             type="text"
             placeholder="Search Task"
             className="w-full pl-10 border-2 text-slate-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-900"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
         <select className="" name="filter" id="filter">
@@ -35,7 +42,7 @@ const TasksPage: React.FC = () => {
 
       {deleteTask && (
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onEdit={updateTask || (() => {})}
           onDelete={deleteTask}
         />
