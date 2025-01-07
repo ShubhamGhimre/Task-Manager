@@ -46,7 +46,15 @@ const TaskForm: React.FC<TaskFormProps> = ({
       } else {
         onAddTask(task);
       }
-      setTask({ id: 0, title: "", description: "", assignedTo: "" });
+      setTask({
+        id: 0,
+        title: "",
+        description: "",
+        assignedTo: "",
+        deadline: "",
+        status: "InProgress",
+        postedAt: new Date().toISOString(),
+      });
     }
   };
 

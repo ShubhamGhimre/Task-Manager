@@ -58,9 +58,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
                 : task.status === "InProgress"
                 ? "bg-yellow-100 text-slate-500"
                 : task.status === "HighPriority"
-                ? "bg-red-400 text-white" 
+                ? "bg-red-400 text-white"
                 : task.status === "LowPriority"
-                ? "bg-yellow-500 text-slate-500" 
+                ? "bg-yellow-500 text-slate-500"
                 : "bg-gray-100 text-gray-700"
             }`}
           >
