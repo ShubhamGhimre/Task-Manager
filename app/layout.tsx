@@ -31,8 +31,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <TaskProvider>
         <Navbar />
-        <TaskProvider>{children}</TaskProvider>
+        {children}</TaskProvider>
         <Toaster />
       </body>
     </html>
