@@ -3,7 +3,12 @@ export interface Task {
   title: string;
   description: string;
   assignedTo: string;
+  status?: string;
+  deadline?: string;
+  postedAt?: string;
 }
+
+
 
 export interface TaskContextType {
   tasks: Task[];

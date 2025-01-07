@@ -4,6 +4,13 @@ import { Task, TaskFormProps } from "@/app/types";
 import { Button } from "./ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const TaskForm: React.FC<TaskFormProps> = ({
   onAddTask,
@@ -11,11 +18,15 @@ const TaskForm: React.FC<TaskFormProps> = ({
   editingTask,
   cancelEdit,
 }) => {
+  const date = new Date();
   const [task, setTask] = useState<Task>({
     id: 0,
     title: "",
     description: "",
     assignedTo: "",
+    deadline: "",
+    status: "InProgress",
+    postedAt: date.toISOString(),
   });
 
   useEffect(() => {
@@ -62,6 +73,37 @@ const TaskForm: React.FC<TaskFormProps> = ({
             onChange={handleInputChange}
             className="block w-full mb-2 p-2 border rounded"
           />
+        </div>
+        <div className="flex justify-between gap-4">
+          <div className="flex flex-col space-y-1.5 ">
+            <Label htmlFor="deadline">Deadline</Label>
+            <Input
+              className="w-[180px]"
+              id="deadline"
+              name="deadline"
+              value={task.deadline}
+              onChange={handleInputChange}
+              type="date"
+            />
+          </div>
+          <div>
+            <Label htmlFor="status">Status</Label>
+            <Select
+            value={task.status}
+            onValueChange={(value) => setTask({ ...task, status: value })}
+            >
+              <SelectTrigger className="w-[180px]" >
+                <SelectValue placeholder="Status"  />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Completed">Completed</SelectItem>
+                <SelectItem value="InReview">InReview</SelectItem>
+                <SelectItem value="InProgress">InProgress</SelectItem>
+                <SelectItem value="HighPriority">HighPriority</SelectItem>
+                <SelectItem value="LowPriority">LowPriority</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
         <div>
           <Label htmlFor="assignedTo">Assigned To</Label>

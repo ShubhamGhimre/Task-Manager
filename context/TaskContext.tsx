@@ -11,7 +11,10 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { toast } = useToast()
 
+  
+
   const [tasks, setTasks] = useState<Task[]>([]);
+
 
   // const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
