@@ -9,9 +9,9 @@ export default function Page() {
         <LoginForm />
         <p className="text-center">
           Need to create an account?{' '}
-          <Link className="text-indigo-500 hover:underline" href="/register">
-            Create Account
-          </Link>{' '}
+          <Link className="text-indigo-500 hover:underline" href="/signup">
+            Sign up
+          </Link>
         </p>
       </div>
     </div>
