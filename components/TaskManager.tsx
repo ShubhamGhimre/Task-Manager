@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import TaskForm from "./TaskForm";
+import TaskForm from "./TaskForm/TaskForm";
 import { useTaskContext } from "@/context/TaskContext";
 import { Task } from "@/app/types";
 

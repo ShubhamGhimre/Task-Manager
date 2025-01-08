@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import TaskForm from "./TaskForm";
+import TaskForm from "./TaskForm/TaskForm";
 import { useTaskContext } from "@/context/TaskContext";
 import { Task } from "@/app/types";
 import { DialogDescription } from "@radix-ui/react-dialog";

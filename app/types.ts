@@ -7,6 +7,28 @@ export interface Task {
   deadline?: string;
   postedAt?: string;
 }
+export interface BaseFieldProps {
+  id: string;
+  label: string;
+  name: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  placeholder?: string;
+  error?: string;
+  touched?: boolean;
+}
+
+// InputField-specific props
+export interface InputFieldProps extends BaseFieldProps {
+  type?: string; // Optional, specific to InputField
+}
+
+// TextAreaField-specific props can be added in the future if needed
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface TextAreaFieldProps extends BaseFieldProps {
+  // No additional props for now
+}
 
 export enum TaskStatus {
   InProgress = 'InProgress',
@@ -14,6 +36,7 @@ export enum TaskStatus {
   InReview = 'InReview',
   HighPriority = 'HighPriority',
   LowPriority = 'LowPriority',
+  MediumPriority = 'MediumPriority',
 }
 
 export const STATUS_OPTIONS = [

@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
-import TaskForm from "./TaskForm";
+import TaskForm from "./TaskForm/TaskForm";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 interface TaskItemProps {
