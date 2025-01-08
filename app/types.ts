@@ -36,9 +36,8 @@ export enum TaskStatus {
   InReview = 'InReview',
   HighPriority = 'HighPriority',
   LowPriority = 'LowPriority',
+  MediumPriority = 'MediumPriority',
 }
-
-
 
 export const STATUS_OPTIONS = [
   { value: "Completed", label: "Completed" },

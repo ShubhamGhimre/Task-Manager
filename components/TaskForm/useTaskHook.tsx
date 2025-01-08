@@ -3,6 +3,7 @@ import { Task, TaskStatus } from "@/app/types";
 
 const useTaskForm = (editingTask?: Task) => {
   const date = new Date();
+  
   const initialTaskState: Task = {
     id: 0,
     title: "",

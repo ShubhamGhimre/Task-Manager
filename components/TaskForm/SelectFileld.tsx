@@ -7,9 +7,8 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select";
+  
 // Reusable SelectField Component
-
-
 const SelectField: React.FC<{
     label: string;
     value: TaskStatus;
@@ -22,11 +21,13 @@ const SelectField: React.FC<{
           <SelectValue placeholder="Select Status" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value={TaskStatus.Completed}>Completed</SelectItem>
-          <SelectItem value={TaskStatus.InReview}>In Review</SelectItem>
-          <SelectItem value={TaskStatus.InProgress}>In Progress</SelectItem>
-          <SelectItem value={TaskStatus.HighPriority}>High Priority</SelectItem>
-          <SelectItem value={TaskStatus.LowPriority}>Low Priority</SelectItem>
+          {
+            Object.values(TaskStatus).map((status) => (
+              <SelectItem key={status} value={status}>
+                {status}
+              </SelectItem>
+            ))
+          }
         </SelectContent>
       </Select>
     </div>

@@ -18,15 +18,12 @@ const TasksPage: React.FC = () => {
 
   console.log(searchQuery);
   const filteredTasks = tasks.filter((task) => {
-
     const matchesSearch = task.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
     const matchesFilter = filter === "ALL" || task.status === filter;
     return matchesSearch && matchesFilter;
   });
-
-
 
   return (
     <div className="flex flex-col items-center justify-center ">

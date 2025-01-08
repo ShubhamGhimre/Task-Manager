@@ -2,7 +2,6 @@ import { InputFieldProps } from "@/app/types";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
-
 // Reusable InputField Component
 const InputField: React.FC<InputFieldProps> = ({
   id,
