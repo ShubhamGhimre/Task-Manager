@@ -16,6 +16,14 @@ export enum TaskStatus {
   LowPriority = 'LowPriority',
 }
 
+export const STATUS_OPTIONS = [
+  { value: "Completed", label: "Completed" },
+  { value: "InReview", label: "In Review" },
+  { value: "InProgress", label: "In Progress" },
+  { value: "HighPriority", label: "High Priority" },
+  { value: "LowPriority", label: "Low Priority" },
+];
+
 export interface TaskContextType {
   tasks: Task[];
   addTask: (task: Task) => void;
@@ -29,3 +37,4 @@ export interface TaskFormProps {
   editingTask?: Task | null;
   cancelEdit?: () => void;
 }
+

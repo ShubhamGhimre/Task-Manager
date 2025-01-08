@@ -16,15 +16,23 @@ const TasksPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("ALL");
 
+  console.log(searchQuery);
   const filteredTasks = tasks.filter((task) => {
-    const matchesSearch = task.title.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
     const matchesFilter = filter === "ALL" || task.status === filter;
     return matchesSearch && matchesFilter;
   });
 
+
+
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h2 className="text-3xl font-semibold mb-4 text-center p-10">Task List</h2>
+    <div className="flex flex-col items-center justify-center ">
+      <h2 className="text-3xl font-semibold mb-4 text-center p-10">
+        Task List
+      </h2>
 
       {/* Search and Filter */}
       <div className="flex justify-between w-screen items-center p-4 px-[13%]">
