@@ -71,6 +71,7 @@ const TasksPage: React.FC = () => {
           tasks={filteredTasks}
           onEdit={updateTask || (() => {})}
           onDelete={deleteTask || (() => {})}
+          type="grid"
         />
       ) : (
         <p className="text-center text-lg mt-10">No tasks available</p>

@@ -131,3 +131,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.flex-column{
+  @apply flex flex-col;
+}

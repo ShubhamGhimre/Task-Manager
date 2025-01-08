@@ -12,7 +12,7 @@ const TaskFormFooter: React.FC<{
       {isEditing ? "Update Task" : "Add Task"}
     </Button>
     {isEditing && (
-      <Button variant="cancel_button" onClick={cancelEdit}>
+      <Button variant="secondary" onClick={cancelEdit}>
         Cancel
       </Button>
     )}
