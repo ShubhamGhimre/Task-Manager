@@ -41,10 +41,10 @@ export enum TaskStatus {
 
 export const STATUS_OPTIONS = [
   { value: "Completed", label: "Completed" },
-  { value: "InReview", label: "In Review" },
-  { value: "InProgress", label: "In Progress" },
-  { value: "HighPriority", label: "High Priority" },
-  { value: "LowPriority", label: "Low Priority" },
+  { value: "In Review", label: "In Review" },
+  { value: "In Progress", label: "In Progress" },
+  { value: "High Priority", label: "High Priority" },
+  { value: "Low Priority", label: "Low Priority" },
 ];
 
 export interface TaskContextType {

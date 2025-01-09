@@ -19,6 +19,8 @@ import {
 import { Button } from "./ui/button";
 import TaskForm from "./TaskForm/TaskForm";
 import { DialogDescription } from "@radix-ui/react-dialog";
+import { DateTime } from "luxon";
+import calculateDueDate from "@/lib/deadlineCalculation";
 
 interface TaskItemProps {
   task: Task;
@@ -30,13 +32,13 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   return (
-    <Card className="w-[350px] rounded-lg border border-gray-200 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
+    <Card className=" relative w-[350px] rounded-lg border border-gray-200 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
       {/* Card Header */}
-      <CardHeader className="p-6 rounded-t-lg">
-        <CardTitle className="text-3xl font-semibold text-gray-800">
+      <CardHeader className="p-6 rounded-t-lg ">
+        <CardTitle className="text-3xl font-semibold text-gray-800 mt-2 overflow-hidden text-ellipsis whitespace-nowrap">
           {task.title}
         </CardTitle>
-        <CardDescription className="text-md text-gray-600 mt-1">
+        <CardDescription className="text-md text-gray-600 mt-1 overflow-hidden text-ellipsis whitespace-nowrap">
           {task.description}
         </CardDescription>
       </CardHeader>
@@ -46,10 +48,15 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
         <div className="text-gray-700">
           <span className="font-medium">Assigned to:</span> {task.assignedTo}
         </div>
-        <div className="text-gray-700">
-          <span className="font-medium">Deadline:</span>{" "}
-          {task.deadline || "No deadline set"}
-        </div>
+        <span
+          className={`${
+            calculateDueDate(task.deadline || null) === "Deadline passed"
+              ? "text-red-600"
+              : "bg-gray-500 px-2 py-1 rounded-full text-white absolute  -top-3 right-2"
+          }`}
+        >
+          {calculateDueDate(task.deadline || null)}
+        </span>
         <div className="text-gray-700">
           <span className="font-medium">Status:</span>{" "}
           <span
@@ -70,12 +77,25 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
         </div>
         <div className="text-gray-700">
           <span className="font-medium">Posted At:</span>{" "}
-          {new Date(task.postedAt || "").toLocaleString() || "N/A"}
+          <span
+            className="text-gray-800"
+            title={
+              task.postedAt
+                ? DateTime.fromISO(task.postedAt).toLocaleString(
+                    DateTime.DATETIME_FULL
+                  )
+                : "N/A"
+            }
+          >
+            {task.postedAt
+              ? DateTime.fromISO(task.postedAt).toRelative({ locale: "en" }) // Relative time
+              : "N/A"}
+          </span>
         </div>
       </CardContent>
 
       {/* Card Footer */}
-      <CardFooter className="p-6 flex justify-end gap-10 bg-gray-50 rounded-b-lg">
+      <CardFooter className="p-6 flex justify-between  bg-gray-50 rounded-b-lg">
         {/* Edit Button with Dialog */}
         <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>

@@ -4,8 +4,8 @@ import TaskItem from "./TaskItem";
 
 interface TaskListProps {
   tasks: Task[];
-  onEdit: (task: Task) => void;
-  onDelete: (taskId: number) => void;
+  onEdit?: (task: Task) => void;
+  onDelete?: (taskId: number) => void;
   type?: "grid" | "list"; // Optional prop to control layout type
 }
 
@@ -25,8 +25,8 @@ const TaskList: React.FC<TaskListProps> = ({
             <TaskItem
               key={task.id}
               task={task}
-              onEdit={onEdit}
-              onDelete={onDelete}
+              onEdit={onEdit || (() => {})}
+              onDelete={onDelete || (() => {})}
             />
           ))}
         </ul>
