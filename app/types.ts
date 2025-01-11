@@ -1,9 +1,15 @@
+export interface User {
+  name: string;
+  email: string;
+  role: string;
+  password: string;
+}
 export interface Task {
-  id: number;
   title: string;
   description: string;
   assignedTo: string;
   status?: TaskStatus;
+  priority?: PriorityStatus;
   deadline?: string;
   postedAt?: string;
 }
@@ -34,9 +40,15 @@ export enum TaskStatus {
   InProgress = 'InProgress',
   Completed = 'Completed',
   InReview = 'InReview',
-  HighPriority = 'HighPriority',
-  LowPriority = 'LowPriority',
+  // HighPriority = 'HighPriority',
+  // LowPriority = 'LowPriority',
   // MediumPriority = 'MediumPriority',
+}
+
+export enum PriorityStatus{
+  High = 'High',
+  Medium = 'Medium',
+  Low = 'Low',
 }
 
 export const STATUS_OPTIONS = [
