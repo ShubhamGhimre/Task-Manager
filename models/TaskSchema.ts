@@ -20,6 +20,7 @@ export interface ITask extends Document {
   priority: PriorityStatus;
   deadline?: Date;
   postedAt?: Date;
+  postedBy: string; // User who created the task
 }
 
 const TaskSchema: Schema = new mongoose.Schema({
@@ -38,6 +39,7 @@ const TaskSchema: Schema = new mongoose.Schema({
   },
   deadline: { type: Date },
   postedAt: { type: Date, default: Date.now },
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // New field
 });
 
 const Task: Model<ITask> = mongoose.models.Task || mongoose.model<ITask>('Task', TaskSchema);
